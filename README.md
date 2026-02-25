@@ -37,7 +37,7 @@ Make sure you have **Docker & Docker Compose** installed.
 To start both frontend and backend:
 
 ```bash
-docker compose up --build
+docker compose up --build -d
 ```
 
 This will:
@@ -48,35 +48,6 @@ This will:
   - Backend → `http://localhost:8000`
   - Frontend → `http://localhost:3000`
 
-## ⚙️ Environment Variables
-
-The frontend expects the backend API URL in:
-
-```
-NEXT_PUBLIC_API_URL
-```
-
-In development (via Docker Compose), this is set to:
-
-```
-http://localhost:8000
-```
-
-which allows the browser to reach the backend.
-
-## 📡 File Upload
-
-Front-end sends a file via:
-
-```js
-fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload`, {
-  method: "POST",
-  body: formData,
-});
-```
-
-And the backend handles it with a FastAPI endpoint.
-
 ## 🧪 Verify
 
 - Visit `http://localhost:8000/docs` to test the FastAPI API.
@@ -86,12 +57,3 @@ And the backend handles it with a FastAPI endpoint.
 
 - The app uses Docker networking so the frontend and backend can communicate inside containers.
 - The browser must still use `localhost` to reach services running in Docker.
-
-## 📦 Next Steps
-
-You might want to:
-
-- Add a database
-- Add authentication
-- Add tests
-- Deploy to a cloud provider
