@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: ./backend
+    restart: always
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    networks:
+      - project-network
+  frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    networks:
+      - project-network
+
+networks:
+  project-network:
